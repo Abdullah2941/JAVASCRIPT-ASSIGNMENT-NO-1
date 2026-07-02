@@ -88,5 +88,22 @@ console.log(compire3);
 
 
 
+// Question 6: Array Manipulation - Basics
+// Create an array colors with values ["red", "green", "blue"]. Then:
+
+// Add "yellow" to the end
+// Remove the first element
+// Insert "purple" at index 1
+// Console.log the final array and its length
 
 
+
+let arr=["red","green","blue"]
+arr.push("yellow")
+console.log(arr);
+
+arr.shift()
+console.log(arr);
+
+arr.splice(1,0,"purple")
+console.log(arr)
