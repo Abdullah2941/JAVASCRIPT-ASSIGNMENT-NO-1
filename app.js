@@ -107,3 +107,62 @@ console.log(arr);
 
 arr.splice(1,0,"purple")
 console.log(arr)
+
+
+
+// Question 7: Array Manipulation - splice()
+// Start with array fruits = ["apple", "banana", "cherry", "date", "elderberry"]. Use splice() to:
+
+// Remove "cherry"
+// Replace "date" with "dragonfruit"
+// Extract the middle 3 elements into a new array
+
+
+let fruits = ["apple", "banana", "cherry", "date", "elderberry"];
+console.log(fruits);
+
+fruits.splice(2,1);
+console.log(fruits);
+
+fruits.splice(2,1,"dragonfruit")
+console.log(fruits);
+
+let middle3=fruits.splice(1, 3);
+console.log(middle3);
+console.log(fruits)
+
+
+
+// Question 8: for Loop - Number Sequence
+// Write a for loop that prints numbers from 1 to 10, but skips number 5
+//  using continue, and stops at 8 using break. Also calculate the sum of all printed numbers.
+let sum=0
+
+for(let i=1;i<=10;i++){
+      if (i===5) {
+        continue;
+    }
+    if (i===8) {
+        break;
+    }
+    console.log(i);
+    sum += i;
+}
+console.log(sum)
+
+
+
+
+// Write nested for loops to create this pattern:
+
+// *
+// **
+// ***
+// ****
+// *****
+
+for(let i=1;i<=5;i++){
+    
+    console.log(i["*"]);
+
+}
