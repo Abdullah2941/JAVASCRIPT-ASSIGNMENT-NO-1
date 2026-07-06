@@ -380,7 +380,7 @@ console.log("Full ISO:", xmas2024.toISOString().split('T')[0]);
 
 
 function calculate(a, b, op) {
-    // Division by zero check sabse pehle
+
     if (op === '/' && b === 0) return "Error: Division by zero";
 
     return op === '+'? a + b
@@ -390,5 +390,94 @@ function calculate(a, b, op) {
          : "Error: Invalid operator";
 }
 
-console.log(calculate(20, 4, '/')); // 5
-console.log(calculate(5, 0, '/')); // Error: Division by zero
+console.log(calculate(20, 4, '/'));
+console.log(calculate(5, 0, '/'));
+
+
+
+// Question 17: Function - Local vs Global Variables
+// Create a global variable globalCounter = 0. Write a function 
+// incrementCounter that declares a local variable with the same name
+//  and increments it, while also incrementing the global variable.
+//   Show the difference after calling the function twice.
+
+let gCounter = 0;
+
+const incrementCounter = () => {
+    let gCounter = 100;
+    
+    gCounter++;
+    console.log("Inside Function - Local gCounter:", gCounter);
+    globalThis.gCounter++;
+};
+
+console.log("Before Call - Global:", gCounter);
+
+incrementCounter(); 
+console.log("1st Call - Global:", gCounter); 
+
+incrementCounter();  
+console.log("2nd Call - Global:", gCounter); 
+
+
+
+
+
+// Question 18: switch Statement - Day of Week
+// Write a switch statement that takes a number (0-6) and returns the
+// corresponding day name (0=Sunday, 1=Monday, etc.). Include a default
+// case for invalid numbers.
+
+
+
+const getDayName = (dayNum) => {
+    const days = ['Sunday','Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[dayNum]?? 'Error: Invalid day number. Use 0-6';
+};
+
+console.log(getDayName(0));
+console.log(getDayName(3));
+console.log(getDayName(6));
+console.log(getDayName(9)); 
+console.log(getDayName(-1));
+
+
+
+// Question 19: while Loop - Countdown
+// Write a while loop that starts at 10 and counts down to 1, printing
+//  each number. Then print "Blast off!". Also calculate the factorial
+//   of 5 using a while loop.
+
+
+const countdown = () => {
+    let num = 10;
+    const values = [];
+    
+    while (num >= 1) {
+        values.push(num--);
+    } 
+    console.log("Countdown:", values.join(' → '));
+    console.log("Blast off!");
+};
+
+const calcFactorial = (n) => {
+    let result = 1;
+    let temp = n;
+    while (temp > 0) {
+        result *= temp--;
+    }
+    return `${n}! = ${result}`;
+};
+countdown();
+console.log(calcFactorial(5));
+
+
+
+// Question 20: do...while Loop - User Input Simulation
+// Create a do...while loop that simulates asking for a password.
+//  Start with enteredPassword = "" and keep "asking" (incrementing
+// a counter) until enteredPassword === "secret123" or 5 attempts made.
+
+
+
+
