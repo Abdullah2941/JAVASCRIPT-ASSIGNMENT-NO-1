@@ -473,7 +473,268 @@ console.log(calcFactorial(5));
 
 
 
+// Question 20: do...while Loop - User Input Simulation
+// Create a do...while loop that simulates asking for a password.
+//  Start with enteredPassword = "" and keep "asking" (incrementing
+// a counter) until enteredPassword === "secret123" or 5 attempts made.
+
+
+
+const passwordCheck = () => {
+    const correctPass = "secret123";
+    let enteredPassword = "";
+    let attempts = 0;
+    const maxAttempts = 5;
+    const attemptsLog = [];
+
+    do {
+        attempts++;
+        enteredPassword = attempts === 3? correctPass : `wrong${attempts}`;
+        
+        attemptsLog.push(`Attempt ${attempts}: ${enteredPassword}`);
+        
+        if (enteredPassword === correctPass) {
+            console.log(`Success! Correct password on attempt ${attempts}`);
+            break; 
+        }
+        
+        if (attempts >= maxAttempts) {
+            console.log(`❌ Failed! Max ${maxAttempts} attempts reached`);
+            break;
+        }
+        
+    } while (enteredPassword!== correctPass && attempts < maxAttempts);
+
+    console.log("\nAttempts Log:");
+    console.log(attemptsLog.join('\n'));
+};
+
+passwordCheck();
 
 
 
 
+// Question 21: Array Methods with for Loop
+// Given numbers = [12, 45, 78, 23, 56, 89, 34]:
+// Use a for loop to find the maximum value
+// Use a for loop to calculate the average
+// Create a new array with only numbers greater than 50
+// Reverse the array without using reverse() method
+
+
+
+
+
+
+
+
+
+let numbers = [12, 45, 78, 23, 56, 89, 34];
+
+let max = numbers[0];
+for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > max) {
+        max = numbers[i];
+    }
+}
+console.log("Maximum:", max); 
+
+
+let total = 0;
+for (let i = 0; i < numbers.length; i++) {
+    total = total + numbers[i];
+}
+let avg = total / numbers.length;
+console.log("Average:", avg); 
+
+
+let bigNumbers = [];
+for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > 50) {
+        bigNumbers.push(numbers[i]);
+    }
+}
+console.log("Greater than 50:", bigNumbers);
+
+let ultaArray = [];
+for (let i = numbers.length - 1; i >= 0; i--) {
+    ultaArray.push(numbers[i]);
+}
+console.log("Reversed:", ultaArray);
+
+
+
+
+
+// Question 22: Event Handling Simulation
+// Create a function handleClick that:
+
+// Gets a value from an input field with id "username"
+// Checks if it's empty and shows an alert if so
+// Otherwise, displays "Welcome, [username]!" in a paragraph with id "greeting"
+// Resets the input field after greeting
+
+
+
+
+const handleClick = () => {
+    const { value: userName } = document.getElementById("username");
+    const greetingPara = document.getElementById("greeting");
+    const userInput = document.getElementById("username");
+
+  
+    const isEmpty = !userName.trim();
+
+    isEmpty
+        ? alert("Error: Username cannot be empty!")
+        : (greetingPara.textContent = `Welcome, ${userName.trim()}!`,
+           userInput.value = "");
+};
+
+document.querySelector("#submitBtn")?.addEventListener("click", handleClick);
+
+
+
+
+
+
+// Question 23: Form Validation Function
+// Write a function validateForm that:
+
+// Takes email and password as parameters
+// Returns true if email contains "@" and password length ≥ 8
+// Otherwise returns false with specific error messages
+// Test with multiple test cases
+
+
+
+
+const validateForm = (email, password) => {
+    const errors = [];
+    
+   
+    !email?.includes('@') && errors.push("Error: Email must contain '@'");
+    
+    password?.length < 8 && errors.push("Error: Password must be at least 8 characters");
+    
+  
+    return {
+        isValid: errors.length === 0,
+        errors: errors,
+        message: errors.length === 0? "Validation passed!" : errors.join(' | ')
+    };
+};
+
+
+const testCases = [
+    { email: "test@gmail.com", pass: "password123" },
+    { email: "invalid.com", pass: "pass" },
+    { email: "user@site.com", pass: "1234567" },
+    { email: "nodomain", pass: "validpass123" },
+    { email: "", pass: "" }
+];
+
+console.log("=== FORM VALIDATION RESULTS ===");
+testCases.forEach(({email, pass}, idx) => {
+    const result = validateForm(email, pass);
+    console.log(`\nTest ${idx + 1}: ${email} / ${pass}`);
+    console.log(`Valid: ${result.isValid}`);
+    console.log(`Message: ${result.message}`);
+});
+
+
+
+// Question 24: Temperature Converter
+// Create a function convertTemperature that:
+
+// Takes a temperature and a unit ("C" or "F") as parameters
+// Converts Celsius to Fahrenheit: (C × 9/5) + 32
+// Converts Fahrenheit to Celsius: (F - 32) × 5/9
+// Returns the converted value with 1 decimal place
+
+
+
+
+
+const convertTemperature = (temp, unit) => {
+    const converters = {
+        'C': (c) => (c * 9/5 + 32), // C to F
+        'F': (f) => (f - 32) * 5/9, // F to C
+        'c': (c) => (c * 9/5 + 32), // lowercase handle
+        'f': (f) => (f - 32) * 5/9 // lowercase handle
+    };
+
+    const convert = converters[unit];
+    if (!convert) return "Error: Unit must be 'C' or 'F'";
+
+   
+    const result = convert(temp);
+    const targetUnit = unit.toUpperCase() === 'C'? 'F' : 'C';
+
+    return `${result.toFixed(1)}°${targetUnit}`;
+};
+
+// Test cases
+console.log("0°C to F:", convertTemperature(0, 'C')); 
+console.log("32°F to C:", convertTemperature(32, 'F')); 
+console.log("100°C to F:", convertTemperature(100, 'c')); 
+console.log("98.6°F to C:", convertTemperature(98.6, 'F')); 
+console.log("Invalid:", convertTemperature(25, 'K'));
+
+
+
+
+// Question 25: Shopping Cart Array Operations
+// Create an array cart = [] and write these functions:
+
+// addItem(name, price): Adds item object to cart
+// removeItem(name): Removes item by name
+// calculateTotal(): Returns sum of all item prices
+// applyDiscount(percent): Applies discount to total
+// listItems(): Returns array of just item names
+
+
+
+
+
+class ShoppingCart {
+    constructor() {
+        this.cart = [];
+    }
+    addItem = (name, price) => {
+        this.cart = [...this.cart, { name, price: +price }];
+        return `Added: ${name} - $${price}`;
+    };
+
+  
+    removeItem = (name) => {
+        const initialLength = this.cart.length;
+        this.cart = this.cart.filter(item => item.name!== name);
+        return initialLength > this.cart.length
+           ? `Removed: ${name}`
+            : `Error: ${name} not found`;
+    };
+
+    calculateTotal = () =>
+        +this.cart.reduce((sum, {price}) => sum + price, 0).toFixed(2);
+    applyDiscount = (percent) => {
+        const total = this.calculateTotal();
+        const discounted = +(total * (1 - percent / 100)).toFixed(2);
+        return percent >= 0 && percent <= 100
+           ? `Total: $${total} | After ${percent}% off: $${discounted}`
+            : "Error: Invalid discount percent";
+    };
+    listItems = () => this.cart.map(({name}) => name);
+}
+const myCart = new ShoppingCart();
+console.log(myCart.addItem("Laptop", 999.99));
+console.log(myCart.addItem("Mouse", 25.50));
+console.log(myCart.addItem("Keyboard", 75));
+console.log(myCart.addItem("USB", 10));
+
+console.log("\nItems:", myCart.listItems()); 
+console.log("Total:", myCart.calculateTotal());
+console.log(myCart.applyDiscount(10));
+console.log(myCart.removeItem("USB"));
+console.log("Items after remove:", myCart.listItems());
+console.log("New Total:", myCart.calculateTotal()); 
