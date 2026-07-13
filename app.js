@@ -473,10 +473,6 @@ console.log(calcFactorial(5));
 
 
 
-// Question 20: do...while Loop - User Input Simulation
-// Create a do...while loop that simulates asking for a password.
-//  Start with enteredPassword = "" and keep "asking" (incrementing
-// a counter) until enteredPassword === "secret123" or 5 attempts made.
 
 
 
